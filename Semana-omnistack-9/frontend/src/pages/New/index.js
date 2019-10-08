@@ -11,7 +11,7 @@ export default function New({ history }) {
 
     const preview = useMemo(() => {
         return thumbnail ? URL.createObjectURL(thumbnail) : null;
-    }, [thumbnail])
+    }, [thumbnail]);
 
     async function handleSubimit(event) {
 
@@ -28,6 +28,7 @@ export default function New({ history }) {
             headers: { user_id }
         })
         history.push('/dashboard');
+        console.log(response);
 
     }
     return (
