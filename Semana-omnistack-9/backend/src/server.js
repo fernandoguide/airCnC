@@ -57,7 +57,7 @@ mongoose.connect(
     })
     
     // definindo quem pode acessar a api
-    // app.use(cors({ origin: 'http://localhost:3000'})); 
+    // app.use(cors({ origin: 'http://192.168.20.64:3000'})); 
     app.use(cors());   
     app.use(express.json());
     app.use('/files',express.static(path.resolve(__dirname,'../', 'uploads')));

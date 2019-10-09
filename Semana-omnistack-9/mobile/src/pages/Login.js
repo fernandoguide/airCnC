@@ -1,24 +1,25 @@
-import React, { useState ,useEffect } from 'react';
-import { View,AsyncStorage,KeyboardAvoidingView ,Platform,Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, AsyncStorage, KeyboardAvoidingView, Platform, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 import api from '../services/api';
 import logo from '../assets/logo.png';
 
 export default function Login({ navigation }) {
-    const [email,setEmail] = useState('');
-    const [techs,setTechs] = useState('');
+    const [email, setEmail] = useState('fernandoguide2014@gmail.com');
+    const [techs, setTechs] = useState('Java,JS,NodeJS,React,React-Native,PHP,AI,Ruby');
 
-    useEffect(()=>{
-        AsyncStorage.getItem('user').then(user =>{
-            if(user){
+    useEffect(() => {
+        // AsyncStorage.removeItem('user').then(user =>{
+        AsyncStorage.getItem('user').then(user => {
+            if (user) {
                 navigation.navigate('List');
             }
         })
-    },[]);
-    async function handleSubmit(){
+    }, []);
+    async function handleSubmit() {
         // email , techs
         // console.log(email,techs);
-        const response = await api.post('/sessions',{
+        const response = await api.post('/sessions', {
             email
         })
         const { _id } = response.data;
@@ -29,8 +30,8 @@ export default function Login({ navigation }) {
     }
 
     return (
-        <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior ="padding" style={styles.container}>
-             <Image source={logo} />
+        <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
+            <Image source={logo} />
 
             <View style={styles.form}>
                 <Text style={styles.label}>SEU EMAIL *</Text>
@@ -43,7 +44,7 @@ export default function Login({ navigation }) {
                     autoCorrect={false}
                     value={email}
                     // onChangeText={text => setEmail(text)}
-                    onChangeText ={setEmail}
+                    onChangeText={setEmail}
                 />
                 <TextInput
                     style={styles.input}
@@ -53,9 +54,9 @@ export default function Login({ navigation }) {
                     autoCorrect={false}
                     value={techs}
                     // onChangeText={text => setEmail(text)}
-                    onChangeText ={setTechs}
+                    onChangeText={setTechs}
                 />
-                <TouchableOpacity  onPress={handleSubmit} style={styles.button}>
+                <TouchableOpacity onPress={handleSubmit} style={styles.button}>
                     <Text style={styles.buttonText}>Encontrar spots</Text>
                 </TouchableOpacity>
             </View>

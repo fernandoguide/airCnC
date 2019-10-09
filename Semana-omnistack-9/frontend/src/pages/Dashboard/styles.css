@@ -40,6 +40,7 @@ ul.notifications li button {
   font-weight: bold;
   margin-top: 10px;
   cursor: pointer;
+  background-color: #fff;
 }
 ul.notifications li button.accept {
   color: #84c870;

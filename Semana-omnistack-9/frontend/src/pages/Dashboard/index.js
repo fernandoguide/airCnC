@@ -47,6 +47,21 @@ export default function Dashboard() {
         loadSpots();
     }, []);
 
+    async function handleAccpect(id) {
+        // chamda da api
+        await api.post(`bookings/${id}/approvals`);
+// depois de ser aprovada eu preciso remover ela da minha lista
+// usando o setRequests eu pego todas as requisicoes porem eu uso o filtro
+//  para remover a requisicao que acabei de aprovar
+// verificando se o id eh diferente do que acabei e aprovar.
+        setRequests(requests.filter(request => request._id !== id));
+
+    }
+    async function handleReject(id) {
+        await api.post(`bookings/${id}/rejections`);
+        setRequests(requests.filter(request => request._id !== id));
+    }
+
     return (
         <>
             <ul className="notifications">
@@ -55,8 +70,8 @@ export default function Dashboard() {
                         <p>
                             <strong>{request.user.email}</strong> esta solicitando uma reserva em <strong>{request.spot.company}</strong> para a data: <strong>{request.date}</strong>
                         </p>
-                        <button className ="accept">ACEITAR</button>
-                        <button className ="reject">REJEITAR</button>
+                        <button className="accept" onClick={() => handleAccpect(request._id)} >ACEITAR</button>
+                        <button className="reject" onClick={() => handleReject(request._id)}>REJEITAR</button>
                     </li>
                 ))}
             </ul>
