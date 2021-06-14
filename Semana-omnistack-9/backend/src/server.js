@@ -18,7 +18,7 @@ const connectedUsers = {};
 
 
 mongoose.connect(
-    'mongodb+srv://fernando:omnistack@cluster0-15xlf.mongodb.net/semana09?retryWrites=true&w=majority', {
+    '', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
